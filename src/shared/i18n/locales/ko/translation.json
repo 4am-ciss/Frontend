@@ -1,1 +1,8 @@
-{ "welcome": "환영합니다." }
+{ "welcome": "환영합니다",
+  "login": {
+    "title": "로그인",
+    "email": "이메일",
+    "password": "비밀번호",
+    "login": "로그인"
+  }
+}

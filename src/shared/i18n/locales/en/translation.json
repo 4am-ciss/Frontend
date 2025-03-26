@@ -1,1 +1,8 @@
-{ "welcome": "Welcome" }
+{ "welcome": "Welcome",
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "login": "Login"
+  }
+}
