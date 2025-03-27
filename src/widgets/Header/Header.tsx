@@ -6,7 +6,7 @@ const Header = () => {
     const { t } = useTranslation()
 
     return (
-    <header className="w-full px-6 py-4 shadow-sm bg-white dark:bg-gray-900">
+    <header className="w-full px-6 py-4 shadow-sm bg-white dark:bg-gray-900 mb-3">
         <div className="max-w-screen-xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3 text-gray-800 dark:text-white">
                 <Mic size={24} />
