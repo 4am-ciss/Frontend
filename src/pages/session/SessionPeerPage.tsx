@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { WebSocketProvider } from '@/features/voice/context/WebSocketProvider'
 import TranscriptionView from '@/features/transcription/ui/TranscriptionView'
+import TranscriptionLanguageSelector from "@/features/transcription/ui/TranscriptionLanguageSelector";
 
 export default function SessionPeerPage() {
     const { sessionId } = useParams<{sessionId: string }>()
@@ -17,7 +18,7 @@ export default function SessionPeerPage() {
                     발표자 - 김현수
                 </h3>
                 <hr className="my-4 h-0.5 bg-gray-200 dark:bg-gray-600" />
-
+                <TranscriptionLanguageSelector />
             </header>
             <div className="min-h-screen flex-col items-center justify-center px-4 py-6 bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
                 <h1 className="text-2xl font-bold mb-2"> Listener View</h1>
