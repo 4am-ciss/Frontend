@@ -1,12 +1,10 @@
 import { useRef, useState, useCallback } from "react";
 import { toast } from 'react-toastify'
-import { TranscriptionData } from '../model/types'
-import { useTranscriptionStore } from '@/stores/use-transcription-store'
+import {handleWebSocketMessage} from "@/features/voice/hooks/handleWebSocketMessage.ts";
 
 export const useWebSocketConnection = (sessionId: string) => {
     const wsRef = useRef<WebSocket | null>(null);
     const [isConnected, setIsConnected] = useState(false);
-    const addTranscription = useTranscriptionStore((s) => s.addTranscription);
 
     const connect = useCallback((sessionId: string) => {
         if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
@@ -25,9 +23,7 @@ export const useWebSocketConnection = (sessionId: string) => {
         ws.onmessage = (event: MessageEvent) => {
             try{
                 const msg = JSON.parse(event.data)
-                if (msg.type === 'transcription') {
-                    addTranscription(msg.data as TranscriptionData)
-                }
+                handleWebSocketMessage(msg)
             } catch (err) {
                 console.error(`[WebSocket -${sessionId}] Message Parser Error: ${err}`)
             }

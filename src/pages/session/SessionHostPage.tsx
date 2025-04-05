@@ -6,6 +6,7 @@ import { Settings } from 'lucide-react'
 import { useSessionSettings } from "@/features/session/hooks/use-session-settings.ts";
 import { useInitializeSystem } from "@/features/session/hooks/use-initialize-system.ts";
 import { AiSettings } from '@/features/session/types'
+import TranscriptionView from '@/features/transcription/ui/TranscriptionView';
 
 export default function SessionHostPage() {
     const sessionId = '1'
@@ -71,9 +72,7 @@ export default function SessionHostPage() {
                 <section className="flex-1 bg-black text-gray-100 shadow-md rounded-lg p-6 overflow-auto">
                     <h2 className="text-2xl font-semibold mb-4"> Transcription </h2>
                     <hr className="mb-6 h-0.5 bg-gray-600" />
-                    <div className="flex gap-4">
-                        <p>Transcription된 내용이 나올 곳</p>
-                    </div>
+                    <TranscriptionView />
                 </section>
             </div>
         </WebSocketProvider>
