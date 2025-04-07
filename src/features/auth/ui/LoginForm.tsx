@@ -1,16 +1,35 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { useLogin} from '../hooks/useLogin'
+import { useAuthStore } from '@/stores/use-auth-store'
+import { toast } from 'react-toastify';
 
 export default function LoginForm() {
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const {mutate: loginMutate} = useLogin()
+    const loginStore = useAuthStore((s) => s.login);
+
+    const { mutate } = useLogin()
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        loginMutate({ email, password})
+        mutate(
+            {email, password},
+            {
+                onSuccess: (data) => {
+                    loginStore(data.user)
+                    localStorage.setItem('accessToken', data.access_token)
+                    toast.success('로그인 성공!')
+                    navigate('/', { replace: true})
+                },
+                onError: () => {
+                    toast.error('로그인 실패!')
+                },
+            }
+        )
     }
 
     return (

@@ -1,5 +1,5 @@
 import { Languages } from 'lucide-react'
-import { useLanguageSelector } from './use-language-selector'
+import { useLanguageSelector } from '../hooks/use-language-selector.tsx'
 
 const LanguageChanger = () => {
     const { isOpen,

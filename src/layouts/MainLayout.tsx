@@ -2,7 +2,7 @@ import Header from '@/widgets/Header/Header'
 import Footer from '@/widgets/Footer/Footer'
 import { Outlet } from 'react-router-dom'
 import Sidebar from '@/widgets/Sidebar/Sidebar'
-import { useAuthStore } from '@/features/auth/model/useAuthStore'
+import { useAuthStore } from '@/stores/use-auth-store.ts'
 
 export default function MainLayout() {
     const user = useAuthStore((state) => state.user)

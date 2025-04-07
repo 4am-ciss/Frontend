@@ -1,5 +1,5 @@
-import LanguageChanger from './LanguageChanger'
-import DarkModeToggle from './DarkModeToggle'
+import LanguageChanger from './LanguageChanger.tsx'
+import DarkModeToggle from './DarkModeToggle.tsx'
 
 const GlobalSettings = () => {
     return (

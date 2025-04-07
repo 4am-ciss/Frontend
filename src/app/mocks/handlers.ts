@@ -38,8 +38,8 @@ export const handlers = [
 
         if (email === mockUser.email && password === mockUser.password) {
             return HttpResponse.json({
-                accessToken: 'mock-token',
-                refreshToken: 'mock-refresh',
+                access_token: 'mock-token',
+                refresh_token: 'mock-refresh',
                 user: {
                     id: mockUser.id,
                     email: mockUser.email,

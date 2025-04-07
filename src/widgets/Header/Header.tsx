@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Mic } from 'lucide-react'
-import GlobalSettings from "@/shared/ui/GlobalSettings/GlobalSettings.tsx";
+import GlobalSettings from "@/shared/ui/GlobalSettings.tsx";
 
 const Header = () => {
     const { t } = useTranslation()

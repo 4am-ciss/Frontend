@@ -5,18 +5,24 @@ import SessionListPage from "@/pages/session/SessionListPage";
 import SessionHostPage from "@/pages/session/SessionHostPage";
 import SessionPeerPage from "@/pages/session/SessionPeerPage";
 
+import RequireAuth from "@/shared/guards/RequireAuth"
+
 export const router = createBrowserRouter([
+    {
+        path: '/login',
+        element: <LoginPage />,
+    },
     {
         path: '/',
         element: <MainLayout />,
         children: [
             {
                 path: '',
-                element: <SessionListPage />,
-            },
-            {
-                path: '/login',
-                element: <LoginPage />,
+                element: (
+                    <RequireAuth>
+                        <SessionListPage />
+                    </RequireAuth>
+                ),
             },
             {
                 path: 'session/host/:sessionId',
