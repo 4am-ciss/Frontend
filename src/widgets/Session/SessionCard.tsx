@@ -1,17 +1,49 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { Languages } from 'lucide-react'
 
 interface SessionCardProps {
-    sessionId: string
+    id: string
     title: string
+    host: string
+    time: string
+    disabled: boolean
+    isKoreanSession: boolean
 }
 
-export default function SessionCard({sessionId, title}: SessionCardProps){
+export default function SessionCard({
+                                        id,
+                                        title,
+                                        host,
+                                        time,
+                                        disabled,
+                                        isKoreanSession,
+                                    }: SessionCardProps) {
+
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        if(disabled) return
+        navigate(`/session/${id}`)
+    }
+
     return (
-        <Link
-            to={`/session/${sessionId}`}
-            className="block p-4 bg-white rounded shadow hover:bg-gray-100 cursor-pointer transition"
+        <div
+            onClick={handleClick}
+            className={`p-4 border rounded shadow-sm transition cursor-pointer
+            ${disabled ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}
+            `}
         >
-            <h2 className="text-lg font-semibold">{title}</h2>
-        </Link>
+            <h3 className="text-lg font-semibold">{title} {isKoreanSession && (
+                <div className="flex items-center gap-1">
+                    <Languages size={14} className="text-red-500" />
+                    <span className="text-xs font-bold text-red-500">KOR</span>
+                </div>
+            )}</h3>
+            <p className="text-sm">발표자: {host}</p>
+            <p className="text-sm">{time}</p>
+            {disabled && (
+                <p className="text-xs text-red-500 mt-1">진행되지 않는 세션입니다</p>
+            )}
+        </div>
     )
 }

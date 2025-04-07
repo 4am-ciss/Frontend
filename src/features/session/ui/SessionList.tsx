@@ -1,32 +1,27 @@
 import { useSessions } from '../hooks/use-sessions'
-// import { useNavigate } from 'react-router-dom'
-// import { useAuthStore } from '@/features/auth/model/useAuthStore'
+import { useAuthStore } from '@/stores/use-auth-store'
+import SessionCard from '@/widgets/Session/SessionCard'
 
 export default function SessionList() {
     const { data, isLoading } = useSessions()
-    // const navigate = useNavigate()
-    // const user = useAuthStore((state) => state.user)
+    const user = useAuthStore((s) => s.user)
 
     if(isLoading) return <div>Loading...</div>
     if (!data) return <div>No sessions found</div>
-
-    const enterSession = (sessionId: string) => {
-        console.log(`Entering session ${sessionId}`)
-        // if (!user) return
-        // if (user.role === 'conference') navigate(`/session/host/${sessionId}`)
-        // else if (user.role === 'listener') navigate(`/session/peer/${sessionId}`)
-    }
+    if (!user) return <div>로그인이 필요합니다</div>
 
     return (
         <div className="grid grid-cols-3 gap-4">
             {data.map((session) => (
-                <button
-                    key={session.id}
-                    onClick={() => enterSession(session.id)}
-                className="p-4 border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-                    <div className="text-lg font-semibold">{session.title}</div>
-                    <div className="text-lg font-semibold">Speaker: {session.speaker}</div>
-                </button>
+                <SessionCard
+                key={session.id}
+                id={session.id}
+                title={session.title}
+                host={session.speaker}
+                time={session.time}
+                disabled={session.isDisabled ?? false}
+                isKoreanSession={session.isKoreanSession ?? false}
+                />
             ))}
         </div>
     )

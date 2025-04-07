@@ -7,8 +7,18 @@ type AuthState = {
     logout: () => void
 }
 
+const savedUser = localStorage.getItem('user')
+
 export const useAuthStore = create<AuthState>()((set) => ({
-   user: null,
-   login: (userData) => set({user: userData}),
-   logout: () => set({user: null}),
+   user: savedUser? JSON.parse(savedUser) : null,
+
+   login: (userData) => {
+       localStorage.setItem('user', JSON.stringify(userData))
+       set({user: userData})
+   },
+   logout: () => {
+       localStorage.removeItem('user')
+       localStorage.removeItem('accessToken')
+       set({user: null})
+   },
 }))

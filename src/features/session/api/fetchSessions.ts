@@ -4,8 +4,9 @@ export type Session = {
     id: string
     title: string
     speaker: string
+    time: string
     isKoreanSession: boolean
-    isActive: boolean
+    isDisabled: boolean
 }
 
 export const fetchSessions = async(): Promise<Session[]> => {
