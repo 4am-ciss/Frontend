@@ -3,7 +3,7 @@ import DarkModeToggle from './DarkModeToggle.tsx'
 
 const GlobalSettings = () => {
     return (
-        <div className="flex items-center gap-2 text-white">
+        <div className="flex items-center gap-2">
             <LanguageChanger />
             <DarkModeToggle />
         </div>
