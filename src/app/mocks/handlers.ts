@@ -8,6 +8,14 @@ const mockUser = {
     role: 'admin',
 }
 
+const mockUser2 = {
+    id: '2',
+    name: '최윤도',
+    email: 'test2@test.com',
+    password: '123456',
+    role: 'listener',
+}
+
 const mockSessionList = [
     {
         id: '1',
@@ -45,6 +53,17 @@ export const handlers = [
                     email: mockUser.email,
                     name: mockUser.name,
                     role: mockUser.role,
+                },
+            })
+        } else if (email === mockUser2.email && password === mockUser2.password) {
+            return HttpResponse.json({
+                access_token: 'mock-token',
+                refresh_token: 'mock-refresh',
+                user: {
+                    id: mockUser2.id,
+                    email: mockUser2.email,
+                    name: mockUser2.name,
+                    role: mockUser2.role,
                 },
             })
         }
